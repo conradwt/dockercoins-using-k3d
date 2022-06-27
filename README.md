@@ -4,17 +4,17 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker For Mac v19.03.13-beta2 or newer
+- Docker For Mac 4.9.1 or newer
 
-- K3d v3.2.1 or newer
+- K3d 5.4.3 or newer
 
 ## Create Cluster
 
 ```zsh
-k3d cluster create dockercoins --agents 3 -p "8082:30080@agent[0]" --servers 3 --wait
+k3d cluster create dockercoins --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
 ```
 
-Note: Servers represent the nodes for our control plan and agents represents the nodes for that we can deploy our application. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
+Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
 
 ## Create Necessary Environment Variables
 
@@ -87,4 +87,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-copyright:: (c) Copyright 2020 Conrad Taylor. All Rights Reserved.
+copyright:: (c) Copyright 2020 - 2022 Conrad Taylor. All Rights Reserved.
