@@ -6,7 +6,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - Docker For Mac 4.9.1 or newer
 
-- K3d v4.5.3 or newer
+- K3d 5.4.3 or newer
 
 ## Create Cluster
 
