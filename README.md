@@ -23,7 +23,7 @@ export REGISTRY=dockercoins
 export TAG=v0.1
 ```
 
-## create Redis deployment
+## Create Redis Deployment
 
 ```zsh
 kubectl create deployment redis --image=redis
