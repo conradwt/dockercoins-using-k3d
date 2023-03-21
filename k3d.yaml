@@ -5,7 +5,7 @@ kind: Simple
 apiVersion: k3d.io/v1alpha4
 metadata:
   name: dockercoins # cluster name
-image: rancher/k3s:v1.25.7+k3s1
+image: rancher/k3s:v1.25.7-k3s1
 servers: 3 # control plane nodes
 agents: 3 # worker nodes
 ports:
