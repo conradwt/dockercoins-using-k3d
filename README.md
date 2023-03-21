@@ -77,7 +77,7 @@ k3d cluster delete dockercoins
 
 ## Support
 
-Bug reports and feature requests can be filed with the rest for the Phoenix project here:
+Bug reports and feature requests can be filed here:
 
 - [File Bug Reports and Features](https://github.com/conradwt/dockercoins-using-k3d/issues)
 
