@@ -13,10 +13,10 @@ The purpose of this example is to provide instructions for running the Dockercoi
 ## Create Cluster
 
 ```zsh
-k3d cluster create dockercoins --agents 3 -p "8082:30080@agent[0]" --servers 3 --wait
+k3d cluster create dockercoins --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
 ```
 
-Note: Servers represent the nodes for our control plan and agents represents the nodes for that we can deploy our application. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
+Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
 
 ## Create Necessary Environment Variables
 
@@ -25,7 +25,7 @@ export REGISTRY=dockercoins
 export TAG=v0.1
 ```
 
-## create Redis deployment
+## Create Redis Deployment
 
 ```zsh
 kubectl create deployment redis --image=redis
@@ -79,7 +79,7 @@ k3d cluster delete dockercoins
 
 ## Support
 
-Bug reports and feature requests can be filed with the rest for the Phoenix project here:
+Bug reports and feature requests can be filed here:
 
 - [File Bug Reports and Features](https://github.com/conradwt/dockercoins-using-k3d/issues)
 
