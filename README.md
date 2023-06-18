@@ -4,9 +4,11 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker For Mac 4.9.1 or newer
+- Docker For Mac 4.20.1 or newer
 
-- K3d 5.4.9 or newer
+- K3d v5.5.1 or newer
+
+- Kubernetes 1.27.3
 
 ## Create Cluster
 
