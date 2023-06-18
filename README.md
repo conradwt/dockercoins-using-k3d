@@ -4,9 +4,11 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker For Mac v19.03.13-beta2 or newer
+- Docker For Mac 4.20.1 or newer
 
-- K3d v3.2.1 or newer
+- K3d v5.5.1 or newer
+
+- Kubernetes 1.27.3
 
 ## Create Cluster
 
@@ -87,4 +89,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-copyright:: (c) Copyright 2020 Conrad Taylor. All Rights Reserved.
+copyright:: (c) Copyright 2020 - 2023 Conrad Taylor. All Rights Reserved.
