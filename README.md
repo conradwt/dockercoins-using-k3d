@@ -4,14 +4,20 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker For Mac 4.9.1 or newer
+- Docker Desktop For Mac 4.21.1 or newer
 
-- K3d 5.4.9 or newer
+- K3d 5.5.2 or newer
 
 ## Create Cluster
 
 ```zsh
 k3d cluster create dockercoins --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
+```
+
+or
+
+```zsh
+k3d cluster create --config k3d.yaml
 ```
 
 Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
