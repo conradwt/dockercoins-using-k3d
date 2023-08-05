@@ -89,4 +89,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-copyright:: (c) Copyright 2020 - 2023 Conrad Taylor. All Rights Reserved.
+Copyright &copy; 2020 - 2023 Conrad Taylor. All rights reserved.
