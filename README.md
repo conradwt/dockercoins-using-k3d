@@ -4,9 +4,11 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker Desktop For Mac 4.21.1 or newer
+- Docker Desktop For Mac 4.22.0 or newer
 
 - K3d 5.5.2 or newer
+
+- Kubernetes 1.27.4
 
 ## Create Cluster
 
@@ -51,13 +53,13 @@ kubectl expose deployment rng --port 80
 kubectl expose deployment hasher --port 80
 ```
 
-## Create Webui Service Using NodePort Type
+## Create WebUI Service Using NodePort Type
 
 ```zsh
 kubectl create service nodeport webui --node-port=30080 --tcp=8082:80
 ```
 
-## Navigate To Webui Service In The Browser
+## Navigate To WebUI Service In The Browser
 
 ```zsh
 open http://localhost:8082
@@ -93,4 +95,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-copyright:: (c) Copyright 2020 - 2023 Conrad Taylor. All Rights Reserved.
+Copyright &copy; 2020 - 2023 Conrad Taylor. All rights reserved.
