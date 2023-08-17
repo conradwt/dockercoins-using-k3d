@@ -47,13 +47,13 @@ kubectl expose deployment rng --port 80
 kubectl expose deployment hasher --port 80
 ```
 
-## Create Webui Service Using NodePort Type
+## Create WebUI Service Using NodePort Type
 
 ```zsh
 kubectl create service nodeport webui --node-port=30080 --tcp=8082:80
 ```
 
-## Navigate To Webui Service In The Browser
+## Navigate To WebUI Service In The Browser
 
 ```zsh
 open http://localhost:8082
