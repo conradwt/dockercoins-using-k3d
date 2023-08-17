@@ -1,13 +1,19 @@
 # k3d cluster create --config k3d.yaml
 # https://k3d.io/v5.5.1/usage/configfile
 
-kind: Simple
 apiVersion: k3d.io/v1alpha5
+
+kind: Simple
+
 metadata:
   name: dockercoins # cluster name
+
 image: rancher/k3s:v1.27.3-rc1-k3s1
+
 servers: 3 # control plane nodes
+
 agents: 3 # worker nodes
+
 ports:
   - port: 8082:30080
     nodeFilters:
