@@ -8,7 +8,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - K3d 5.5.2 or newer
 
-- Kubernetes 1.27.4
+- Kubectl 1.28.0 or newer
 
 ## Create Cluster
 
