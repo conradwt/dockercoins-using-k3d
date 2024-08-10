@@ -1,5 +1,5 @@
 # k3d cluster create --config k3d.yaml
-# https://k3d.io/v5.7.3/usage/configfile
+# https://k3d.io/v5.5.1/usage/configfile
 
 apiVersion: k3d.io/v1alpha5
 
