@@ -21,7 +21,7 @@ k3d cluster create dockercoins --servers 3 --agents 3 -p "8082:30080@agent:0" --
 or
 
 ```zsh
-k3d cluster create --config k3d.yaml
+k3d cluster create --config k3d-config.yaml
 ```
 
 Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
