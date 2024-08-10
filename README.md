@@ -13,7 +13,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 ## Create Cluster
 
 ```zsh
-k3d cluster create dockercoins --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
+k3d cluster create dockercoins --servers 3 --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
 ```
 
 or

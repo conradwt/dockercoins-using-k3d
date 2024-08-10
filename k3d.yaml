@@ -8,6 +8,7 @@ kind: Simple
 metadata:
   name: dockercoins # cluster name
 
+# image: rancher/k3s:v1.30.3-k3s1
 image: rancher/k3s:v1.28.1-rc1-k3s1
 
 servers: 3 # control plane nodes
