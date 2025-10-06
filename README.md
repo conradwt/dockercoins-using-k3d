@@ -6,16 +6,21 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - Docker Desktop For Mac 4.22.0 or newer
 
-- K3d 5.7.3 or newer
+- K3d 5.8.3 or newer
 
-- Kubectl 1.30 or newer
+- Kubectl 1.34 or newer
 
-- Kubernetes 1.30.3 or newer
+- Kubernetes 1.34.1 or newer
 
 ## Create Cluster
 
 ```zsh
-k3d cluster create dockercoins --servers 3 --agents 3 -p "8082:30080@agent:0" --servers 3 --wait
+k3d cluster create dockercoins \
+  --servers 3 \
+  --agents 3 \
+  --image rancher/k3s:v1.34.1-k3s1 \
+  --port "8082:30080@agent:0" \
+  --wait
 ```
 
 or
@@ -97,4 +102,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-Copyright &copy; 2020 - 2024 Conrad Taylor. All rights reserved.
+Copyright &copy; 2020 - 2025 Conrad Taylor. All rights reserved.
