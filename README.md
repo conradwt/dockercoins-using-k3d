@@ -16,9 +16,9 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ```zsh
 k3d cluster create dockercoins \
+  --image rancher/k3s:v1.34.1-k3s1 \
   --servers 3 \
   --agents 3 \
-  --image rancher/k3s:v1.34.1-k3s1 \
   --port "8082:30080@agent:0" \
   --wait
 ```
