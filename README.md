@@ -15,17 +15,6 @@ The purpose of this example is to provide instructions for running the Dockercoi
 ## Create Cluster
 
 ```zsh
-k3d cluster create dockercoins \
-  --image rancher/k3s:v1.34.1-k3s1 \
-  --servers 3 \
-  --agents 3 \
-  --port "8082:30080@agent:0" \
-  --wait
-```
-
-or
-
-```zsh
 k3d cluster create --config k3d-config.yaml
 ```
 
@@ -60,16 +49,16 @@ kubectl expose deployment rng --port 80
 kubectl expose deployment hasher --port 80
 ```
 
-## Create WebUI Service Using NodePort Type
+## Create WebUI Service
 
 ```zsh
-kubectl create service nodeport webui --node-port=30080 --tcp=8082:80
+kubectl apply -f webui.yaml
 ```
 
 ## Navigate To WebUI Service In The Browser
 
 ```zsh
-open http://localhost:8082
+open http://localhost
 ```
 
 ## Scaling The Worker Service
