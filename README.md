@@ -27,32 +27,229 @@ export REGISTRY=dockercoins
 export TAG=v0.1
 ```
 
-## Create Redis Deployment
+## Create Redis Service and Deployment
 
-```zsh
-kubectl create deployment redis --image=redis
+redis.yaml:
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis
+spec:
+  type: ClusterIP
+  selector:
+    app: redis
+  ports:
+    - protocol: TCP
+      # port of the service
+      port: 6379
+      # port of the pod
+      targetPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+spec:
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+        - name: redis
+          image: redis:8.2.1
+          # resources:
+          #   limits:
+          #     memory: '128Mi'
+          #     cpu: '500m'
+          ports:
+            - containerPort: 6379
 ```
 
-## Create Other Deployments
-
 ```zsh
-for SERVICE in hasher rng webui worker; do
-  kubectl create deployment $SERVICE --image=$REGISTRY/$SERVICE:$TAG
-done
+kubectl apply -f redis.yaml
 ```
 
-## Create Redis, Rng, And Hasher Services Using ClusterIP Type
+## Create Hasher Service and Deployment
 
-```zsh
-kubectl expose deployment redis --port 6379
-kubectl expose deployment rng --port 80
-kubectl expose deployment hasher --port 80
+hasher.yaml:
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hasher
+spec:
+  type: ClusterIP
+  selector:
+    app: hasher
+  ports:
+    - protocol: TCP
+      # port of the service
+      port: 80
+      # port of the pod
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hasher
+spec:
+  selector:
+    matchLabels:
+      app: hasher
+  template:
+    metadata:
+      labels:
+        app: hasher
+    spec:
+      containers:
+        - name: hasher
+          image: dockercoins/hasher:v0.1
+          # resources:
+          #   limits:
+          #     memory: '128Mi'
+          #     cpu: '500m'
+          ports:
+            - containerPort: 80
 ```
 
-## Create WebUI Service
+```zsh
+kubectl apply -f hasher.yaml
+```
+
+## Create Rng Service and Deployment
+
+rng.yaml:
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rng
+spec:
+  type: ClusterIP
+  selector:
+    app: rng
+  ports:
+    - protocol: TCP
+      # port of the service
+      port: 80
+      # port of the pod
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rng
+spec:
+  selector:
+    matchLabels:
+      app: rng
+  template:
+    metadata:
+      labels:
+        app: rng
+    spec:
+      containers:
+        - name: rng
+          image: dockercoins/rng:v0.1
+          # resources:
+          #   limits:
+          #     memory: '128Mi'
+          #     cpu: '500m'
+          ports:
+            - containerPort: 80
+```
+
+```zsh
+kubectl apply -f rng.yaml
+```
+
+## Create WebUI Service and Deployment
+
+webui.yaml:
+```yaml
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webui
+spec:
+  type: LoadBalancer
+  selector:
+    app: webui
+  ports:
+    - protocol: TCP
+      # port of the service
+      port: 8082
+      # port of the pod
+      targetPort: 80
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webui
+spec:
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      labels:
+        app: webui
+    spec:
+      containers:
+        - name: webui
+          image: dockercoins/webui:v0.1
+          # resources:
+          #   limits:
+          #     memory: '128Mi'
+          #     cpu: '500m'
+          ports:
+            - containerPort: 80
+```
 
 ```zsh
 kubectl apply -f webui.yaml
+```
+
+## Create Worker Deployment
+
+worker.yaml:
+```yaml
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: worker
+spec:
+  selector:
+    matchLabels:
+      app: worker
+  template:
+    metadata:
+      labels:
+        app: worker
+    spec:
+      containers:
+        - name: worker
+          image: dockercoins/worker:v0.1
+          # resources:
+          #   limits:
+          #     memory: '128Mi'
+          #     cpu: '500m'
+          # ports:
+          #   - containerPort: <Port>
+```
+
+```zsh
+kubectl apply -f worker.yaml
 ```
 
 ## Navigate To WebUI Service In The Browser
