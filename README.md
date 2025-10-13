@@ -30,6 +30,7 @@ export TAG=v0.1
 ## Create Redis Service and Deployment
 
 redis.yaml:
+
 ```yaml
 ---
 apiVersion: v1
@@ -78,6 +79,7 @@ kubectl apply -f redis.yaml
 ## Create Hasher Service and Deployment
 
 hasher.yaml:
+
 ```yaml
 ---
 apiVersion: v1
@@ -126,6 +128,7 @@ kubectl apply -f hasher.yaml
 ## Create Rng Service and Deployment
 
 rng.yaml:
+
 ```yaml
 ---
 apiVersion: v1
@@ -174,14 +177,31 @@ kubectl apply -f rng.yaml
 ## Create WebUI Service and Deployment
 
 webui.yaml:
+
 ```yaml
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webui
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webui
+                port:
+                  number: 8082
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: webui
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   selector:
     app: webui
   ports:
@@ -222,6 +242,7 @@ kubectl apply -f webui.yaml
 ## Create Worker Deployment
 
 worker.yaml:
+
 ```yaml
 ---
 apiVersion: apps/v1
