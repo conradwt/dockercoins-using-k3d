@@ -18,21 +18,26 @@ servers: 3
 agents: 3
 
 ports:
-  - port: 8082:30080
+  - port: 80:80
     nodeFilters:
-      - agent:0
+      - loadbalancer
+  - port: 443:443
+    nodeFilters:
+      - loadbalancer
+
 options:
-  k3d: # k3d runtime settings
-    wait: true # wait for cluster to be usable before returning; same as `--wait` (default: true)
-  #   timeout: '60s' # wait timeout before aborting; same as `--timeout 60s`
-  #   disableLoadbalancer: true # same as `--no-lb`
-  #   disableImageVolume: false # same as `--no-image-volume`
-  #   disableRollback: false # same as `--no-Rollback`
-  #   loadbalancer:
-  #     configOverrides:
-  #       - settings.workerConnections=2048
-  # k3s: # options passed on to K3s itself
-  #   extraArgs: # additional arguments passed to the `k3s server|agent` command; same as `--k3s-arg`
-  #     - arg: '--disable=traefik' # same as `--disable=traefik@server:*`
+  k3d:
+    wait: true
+    timeout: "60s"
+  # k3s:
+  #   extraArgs:
+  #     - arg: '--disable=traefik'
   #       nodeFilters:
   #         - server:*
+  kubeconfig:
+    updateDefaultKubeconfig: true
+    switchCurrentContext: true
+# volumes:
+#   - volume: /workspace/k3d/data:data
+#     nodeFilters:
+#       - agent:*

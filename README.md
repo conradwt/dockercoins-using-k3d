@@ -20,13 +20,6 @@ k3d cluster create --config k3d-config.yaml
 
 Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
 
-## Create Necessary Environment Variables
-
-```zsh
-export REGISTRY=dockercoins
-export TAG=v0.1
-```
-
 ## Create Redis Service and Deployment
 
 redis.yaml:
