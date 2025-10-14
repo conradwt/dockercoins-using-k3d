@@ -15,9 +15,17 @@ spec:
       containers:
         - name: worker
           image: dockercoins/worker:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
+
+          # Because if limits = requests then QoS is set to "Guaranteed"
+          resources:
+            requests:
+              cpu: '50m' # Request 50 MiB of memory
+              memory: '25Mi' # Request 25 MiB of memory
+            limits:
+              cpu: '100m' # Limit to 100 millicores of cpu
+              memory: '50Mi' # Limit to 50 MiB of memory
+
+          # hardcode the listening port if Dockerfile isn't set with EXPOSE
           # ports:
-          #   - containerPort: <Port>
+          #   - containerPort: 80
+          #     protocol: TCP

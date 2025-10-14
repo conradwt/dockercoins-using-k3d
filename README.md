@@ -12,277 +12,63 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - Kubernetes 1.34.1 or newer
 
-## Create Cluster
+## Tutorial
 
-```zsh
-k3d cluster create --config k3d-config.yaml
-```
+1.  create cluster
 
-Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
+    ```zsh
+    k3d cluster create --config k3d-config.yaml
+    ```
 
-## Create Redis Service and Deployment
+    Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
 
-redis.yaml:
+2.  create Redis service and deployment
 
-```yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis
-spec:
-  type: ClusterIP
-  selector:
-    app: redis
-  ports:
-    - protocol: TCP
-      # port of the service
-      port: 6379
-      # port of the pod
-      targetPort: 6379
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: redis
-spec:
-  selector:
-    matchLabels:
-      app: redis
-  template:
-    metadata:
-      labels:
-        app: redis
-    spec:
-      containers:
-        - name: redis
-          image: redis:8.2.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
-          ports:
-            - containerPort: 6379
-```
+    ```zsh
+    kubectl apply -f redis.yaml
+    ```
 
-```zsh
-kubectl apply -f redis.yaml
-```
+3.  create Hasher service and deployment
 
-## Create Hasher Service and Deployment
+    ```zsh
+    kubectl apply -f hasher.yaml
+    ```
 
-hasher.yaml:
+4.  create Rng service and deployment
 
-```yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hasher
-spec:
-  type: ClusterIP
-  selector:
-    app: hasher
-  ports:
-    - protocol: TCP
-      # port of the service
-      port: 80
-      # port of the pod
-      targetPort: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: hasher
-spec:
-  selector:
-    matchLabels:
-      app: hasher
-  template:
-    metadata:
-      labels:
-        app: hasher
-    spec:
-      containers:
-        - name: hasher
-          image: dockercoins/hasher:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
-          ports:
-            - containerPort: 80
-```
+    ```zsh
+    kubectl apply -f rng.yaml
+    ```
 
-```zsh
-kubectl apply -f hasher.yaml
-```
+5.  create WebUI service and deployment
 
-## Create Rng Service and Deployment
+    ```zsh
+    kubectl apply -f webui.yaml
+    ```
 
-rng.yaml:
+6.  create Worker deployment
 
-```yaml
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: rng
-spec:
-  type: ClusterIP
-  selector:
-    app: rng
-  ports:
-    - protocol: TCP
-      # port of the service
-      port: 80
-      # port of the pod
-      targetPort: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: rng
-spec:
-  selector:
-    matchLabels:
-      app: rng
-  template:
-    metadata:
-      labels:
-        app: rng
-    spec:
-      containers:
-        - name: rng
-          image: dockercoins/rng:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
-          ports:
-            - containerPort: 80
-```
+    ```zsh
+    kubectl apply -f worker.yaml
+    ```
 
-```zsh
-kubectl apply -f rng.yaml
-```
+7.  navigate to WebUI service in the browser
 
-## Create WebUI Service and Deployment
+    ```zsh
+    open http://localhost
+    ```
 
-webui.yaml:
+8.  scaling the Worker service
 
-```yaml
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: webui
-spec:
-  rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: webui
-                port:
-                  number: 8082
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: webui
-spec:
-  type: ClusterIP
-  selector:
-    app: webui
-  ports:
-    - protocol: TCP
-      # port of the service
-      port: 8082
-      # port of the pod
-      targetPort: 80
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: webui
-spec:
-  selector:
-    matchLabels:
-      app: webui
-  template:
-    metadata:
-      labels:
-        app: webui
-    spec:
-      containers:
-        - name: webui
-          image: dockercoins/webui:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
-          ports:
-            - containerPort: 80
-```
+    ```zsh
+    kubectl scale deploy/worker --replicas=10
+    ```
 
-```zsh
-kubectl apply -f webui.yaml
-```
+9.  teardown cluster
 
-## Create Worker Deployment
-
-worker.yaml:
-
-```yaml
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: worker
-spec:
-  selector:
-    matchLabels:
-      app: worker
-  template:
-    metadata:
-      labels:
-        app: worker
-    spec:
-      containers:
-        - name: worker
-          image: dockercoins/worker:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
-          # ports:
-          #   - containerPort: <Port>
-```
-
-```zsh
-kubectl apply -f worker.yaml
-```
-
-## Navigate To WebUI Service In The Browser
-
-```zsh
-open http://localhost
-```
-
-## Scaling The Worker Service
-
-```zsh
-kubectl scale deploy/worker --replicas=10
-```
-
-## Teardown Cluster
-
-```zsh
-k3d cluster delete dockercoins
-```
+    ```zsh
+    k3d cluster delete dockercoins
+    ```
 
 ## References
 

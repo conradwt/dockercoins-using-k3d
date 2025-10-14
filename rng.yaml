@@ -30,9 +30,17 @@ spec:
       containers:
         - name: rng
           image: dockercoins/rng:v0.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
+
+          # Because if limits = requests then QoS is set to "Guaranteed"
+          resources:
+            requests:
+              cpu: '25m' # Request 25 MiB of memory
+              memory: '30Mi' # Request 30 MiB of memory
+            limits:
+              cpu: '50m' # Limit to 50 millicores of cpu
+              memory: '60Mi' # Limit to 60 MiB of memory
+
+          # hardcode the listening port if Dockerfile isn't set with EXPOSE
           ports:
             - containerPort: 80
+              protocol: TCP
