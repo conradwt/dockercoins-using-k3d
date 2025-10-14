@@ -30,9 +30,17 @@ spec:
       containers:
         - name: redis
           image: redis:8.2.1
-          # resources:
-          #   limits:
-          #     memory: '128Mi'
-          #     cpu: '500m'
+
+          # Because if limits = requests then QoS is set to "Guaranteed"
+          resources:
+            requests:
+              cpu: '20m' # Request 20 MiB of memory
+              memory: '40Mi' # Request 40 MiB of memory
+            limits:
+              cpu: '60m' # Limit to 60 millicores of cpu
+              memory: '80Mi' # Limit to 80 MiB of memory
+
+          # hardcode the listening port if Dockerfile isn't set with EXPOSE
           ports:
             - containerPort: 6379
+              protocol: TCP
