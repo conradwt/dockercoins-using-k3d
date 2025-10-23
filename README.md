@@ -100,6 +100,8 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - https://training.play-with-kubernetes.com/kubernetes-workshop
 
+- https://gateway-api.sigs.k8s.io
+
 - https://docs.nginx.com/nginx-gateway-fabric/get-started
 
 ## Support
