@@ -22,49 +22,73 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
     Note: Servers represent the control plan nodes and agents represents the worker nodes. For additional information, please read [here](https://rancher.com/docs/k3s/latest/en/architecture).
 
-2.  create Redis service and deployment
+2.  install K8s Gateway API resources
+
+    ```zsh
+    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.2.0" | kubectl apply -f -
+    ```
+
+3.  deploy Nginx Gateway Fabric
+
+    ```zsh
+    helm install ngf oci://ghcr.io/nginx/charts/nginx-gateway-fabric --create-namespace -n nginx-gateway
+    ```
+
+4.  create K8s gateway resource
+
+    ```zsh
+    kubectl apply -f gateway.yaml
+    ```
+
+5.  create K8s HTTPRoute resource
+
+    ```zsh
+    kubectl apply -f httproute.yaml
+    ```
+
+6.  create Redis service and deployment
 
     ```zsh
     kubectl apply -f redis.yaml
     ```
 
-3.  create Hasher service and deployment
+7.  create Hasher service and deployment
 
     ```zsh
     kubectl apply -f hasher.yaml
     ```
 
-4.  create Rng service and deployment
+8.  create Rng service and deployment
 
     ```zsh
     kubectl apply -f rng.yaml
     ```
 
-5.  create WebUI service and deployment
+9.  create WebUI service and deployment
 
     ```zsh
     kubectl apply -f webui.yaml
     ```
 
-6.  create Worker deployment
+10. create Worker deployment
 
     ```zsh
     kubectl apply -f worker.yaml
     ```
 
-7.  navigate to WebUI service in the browser
+11. navigate to WebUI service in the browser
 
     ```zsh
     open http://localhost
     ```
 
-8.  scaling the Worker service
+12. scaling the Worker service
 
     ```zsh
     kubectl scale deploy/worker --replicas=10
     ```
 
-9.  teardown cluster
+13. teardown cluster
 
     ```zsh
     k3d cluster delete dockercoins
@@ -75,6 +99,8 @@ The purpose of this example is to provide instructions for running the Dockercoi
 - https://k3d.io
 
 - https://training.play-with-kubernetes.com/kubernetes-workshop
+
+- https://docs.nginx.com/nginx-gateway-fabric/get-started
 
 ## Support
 
