@@ -40,6 +40,12 @@ spec:
               cpu: '60m' # Limit to 60 millicores of cpu
               memory: '80Mi' # Limit to 80 MiB of memory
 
+          # per-container security context
+          # lock down privileges inside the container
+          securityContext:
+            allowPrivilegeEscalation: false # prevent sudo, etc.
+            privileged: false # prevent acting like host root
+
           # hardcode the listening port if Dockerfile isn't set with EXPOSE
           ports:
             - containerPort: 6379
