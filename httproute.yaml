@@ -4,7 +4,7 @@ metadata:
   name: httproute
 spec:
   parentRefs:
-    - name: dockercoins-gateway
+    - name: gateway
       sectionName: http
   # hostnames:
   #   - 'cafe.example.com'
