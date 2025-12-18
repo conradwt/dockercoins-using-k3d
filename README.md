@@ -25,7 +25,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 2.  install K8s Gateway API resources
 
     ```zsh
-    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.2.2" | kubectl apply -f -
+    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.3.0" | kubectl apply -f -
     ```
 
 3.  deploy Nginx Gateway Fabric
