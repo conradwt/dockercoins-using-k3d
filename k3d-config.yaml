@@ -9,7 +9,7 @@ metadata:
   # cluster name
   name: dockercoins
 
-image: rancher/k3s:v1.34.1-k3s1
+image: rancher/k3s:v1.35.0-k3s1
 
 # control plane nodes
 servers: 3
@@ -28,10 +28,10 @@ ports:
 options:
   k3d:
     wait: true
-    timeout: '60s'
+    timeout: "60s"
   k3s:
     extraArgs:
-      - arg: '--disable=traefik'
+      - arg: "--disable=traefik"
         nodeFilters:
           - server:*
   kubeconfig:
