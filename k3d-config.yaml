@@ -28,10 +28,10 @@ ports:
 options:
   k3d:
     wait: true
-    timeout: '60s'
+    timeout: "60s"
   k3s:
     extraArgs:
-      - arg: '--disable=traefik'
+      - arg: "--disable=traefik"
         nodeFilters:
           - server:*
   kubeconfig:

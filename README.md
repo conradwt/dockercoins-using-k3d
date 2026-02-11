@@ -4,7 +4,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 ## Software Requirements
 
-- Docker Desktop For Mac 4.22.0 or newer
+- OrbStack 2.0.5 or newer
 
 - K3d 5.8.3 or newer
 
