@@ -8,9 +8,9 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - K3d 5.8.3 or newer
 
-- Kubectl 1.34 or newer
+- Kubectl 1.35 or newer
 
-- Kubernetes 1.34.1 or newer
+- Kubernetes 1.35.0 or newer
 
 ## Tutorial
 
@@ -116,4 +116,4 @@ Dockercoins Using K3d is released under the [MIT license](./LICENSE.md).
 
 ## Copyright
 
-Copyright &copy; 2020 - 2025 Conrad Taylor. All rights reserved.
+Copyright &copy; 2020 - 2026 Conrad Taylor. All rights reserved.
