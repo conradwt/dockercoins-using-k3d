@@ -34,7 +34,7 @@ spec:
           # Because if limits = requests then QoS is set to "Guaranteed"
           resources:
             requests:
-              cpu: '10m' # Request 10 MiB of memory
+              cpu: '10m' # Request 10 millicores of cpu
               memory: '40Mi' # Request 40 MiB of memory
             limits:
               cpu: '25m' # Limit to 25 millicores of cpu

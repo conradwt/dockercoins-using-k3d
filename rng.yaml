@@ -34,12 +34,12 @@ spec:
           # Because if limits = requests then QoS is set to "Guaranteed"
           resources:
             requests:
-              cpu: '25m' # Request 25 MiB of memory
+              cpu: '25m' # Request 25 millicores of cpu
               memory: '30Mi' # Request 30 MiB of memory
             limits:
               cpu: '50m' # Limit to 50 millicores of cpu
               memory: '60Mi' # Limit to 60 MiB of memory
-              
+
           # per-container security context
           # lock down privileges inside the container
           securityContext:

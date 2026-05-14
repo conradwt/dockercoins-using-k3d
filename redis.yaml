@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
         - name: redis
-          image: redis:8.2.1
+          image: redis:8.6.2
 
           # Because if limits = requests then QoS is set to "Guaranteed"
           resources:
