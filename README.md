@@ -8,9 +8,9 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - K3d 5.8.3 or newer
 
-- Kubectl 1.35 or newer
+- Kubectl 1.36 or newer
 
-- Kubernetes 1.35.0 or newer
+- Kubernetes 1.36.0 or newer
 
 ## Tutorial
 
@@ -25,7 +25,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 2.  install K8s Gateway API resources
 
     ```zsh
-    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.3.0" | kubectl apply -f -
+    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.5.1" | kubectl apply -f -
     ```
 
 3.  deploy Nginx Gateway Fabric
