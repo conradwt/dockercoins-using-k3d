@@ -10,7 +10,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - Kubectl 1.36 or newer
 
-- Kubernetes 1.36.0 or newer
+- Kubernetes 1.36.2 or newer
 
 ## Tutorial
 
