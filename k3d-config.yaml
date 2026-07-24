@@ -9,7 +9,7 @@ metadata:
   # cluster name
   name: dockercoins
 
-image: rancher/k3s:v1.36.2-rc1-k3s1
+image: rancher/k3s:v1.36.2-k3s1
 # control plane nodes
 servers: 3
 
