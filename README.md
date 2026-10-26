@@ -6,11 +6,11 @@ The purpose of this example is to provide instructions for running the Dockercoi
 
 - OrbStack 2.2.1 or newer
 
-- K3d 5.8.3 or newer
+- K3d 5.9.0 or newer
 
-- Kubectl 1.36 or newer
+- Kubectl 1.37 or newer
 
-- Kubernetes 1.36.2 or newer
+- Kubernetes 1.37.1 or newer
 
 ## Tutorial
 
@@ -25,7 +25,7 @@ The purpose of this example is to provide instructions for running the Dockercoi
 2.  install K8s Gateway API resources
 
     ```zsh
-    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.6.5" | kubectl apply -f -
+    kubectl kustomize "https://github.com/nginx/nginx-gateway-fabric/config/crd/gateway-api/standard?ref=v2.8.0" | kubectl apply -f -
     ```
 
 3.  deploy Nginx Gateway Fabric
