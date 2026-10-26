@@ -1,5 +1,5 @@
 # k3d cluster create --config k3d-config.yaml
-# https://k3d.io/v5.7.3/usage/configfile
+# https://k3d.io/v5.9.0/usage/configfile
 
 apiVersion: k3d.io/v1alpha5
 
@@ -9,7 +9,7 @@ metadata:
   # cluster name
   name: dockercoins
 
-image: rancher/k3s:v1.36.2-k3s1
+image: rancher/k3s:v1.37.1-k3s1
 # control plane nodes
 servers: 3
 
